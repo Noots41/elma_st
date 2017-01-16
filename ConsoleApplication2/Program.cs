@@ -11,8 +11,10 @@ namespace ConsoleApplication2
     {
         static void Main(string[] args)
         {
-            var cals = new C.Calc();
-            int result = cals.Sum(1, 2);
+            var calc = new C.Calc(new Calc.IOperation[] { new C.SumOperation() });
+
+            int result = calc.Sum(1, 2);
+            int result2 = (int)calc.Execute("Sum", new object[] { 1, 2 });
             Console.WriteLine($"result = {result}");
             //Console.WriteLine(string.Format("result = {0}",result));
             Console.ReadKey();

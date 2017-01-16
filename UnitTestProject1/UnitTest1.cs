@@ -13,9 +13,9 @@ namespace UnitTestProject1
         [TestMethod]
         public void SumTest()
         {
-            var calc = new C.Calc();
-            var result = calc.Sum(1, 2);
-            Assert.AreEqual(result, 3);
+            //var calc = new C.Calc(); тесты теперь для оперэйшинов
+            //var result = calc.Sum(1, 2);
+           // Assert.AreEqual(result, 3);
         }
     }
 }
