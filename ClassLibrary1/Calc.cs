@@ -13,12 +13,17 @@ namespace Calc
             return (int)Execute("Sum", new object[] { x, y });
         }
 
+        public Calc(IEnumerable<IOperation> opers)
+        {
+            operations = opers;
+        }
+
         public Calc(IOperation[] opers)
         {
             operations = opers;
         }
 
-        private IOperation[] operations { get; set; }
+        private IEnumerable<IOperation> operations { get; set; }
 
         public object Execute(string name, object[] args)
         {
@@ -39,7 +44,9 @@ namespace Calc
         {
             if (args.Length < 2)
                 throw new IndexOutOfRangeException("Необходимо 2 аргумента");
-            return (int)args[0] + (int)args[1];
+            var x = Convert.ToInt32(args[0]);
+            var y = Convert.ToInt32(args[1]);
+            return x + y;
         }
     }
 
