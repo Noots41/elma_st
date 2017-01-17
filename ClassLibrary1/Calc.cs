@@ -35,10 +35,46 @@ namespace Calc
     public class SumOperation : IOperation
     {
         public string Name { get { return "Sum"; } }
-
         public object Execute(object[] args)
         {
-            return (int)args[0] + (int)args[1];//нужна проверка на кол-во элементов
+            if (args.Length < 2)
+                throw new IndexOutOfRangeException("Необходимо 2 аргумента");
+            return (int)args[0] + (int)args[1];
         }
     }
+
+    public class TripleOperation : IOperation
+    {
+        public string Name { get { return "Triple"; } }
+        public object Execute(object[] args)
+        {
+            if (args.Length < 3)
+                throw new IndexOutOfRangeException("Необходимо 3 аргумента");
+            return 2*(int)args[2] - (int)args[1] + (int)args[0];
+        }
+    }
+
+    public class NullOperation : IOperation
+    {
+        public string Name { get { return "Null"; } }
+        public object Execute(object[] args)
+        {
+            return Execute();
+        }
+        private object Execute()
+        { return 0; }
+    }
+
+    public class SingleOperation : IOperation
+    {
+        public string Name { get { return "Single"; } }
+        public object Execute(object[] args)
+        {
+            if (args.Length < 1)
+                throw new IndexOutOfRangeException("Необходим 1 аргумент"); //Exception("Необходим 1 аргумент");
+            return (int)Math.Pow((int)args[0], 2);
+        }
+
+    }
+
 }
