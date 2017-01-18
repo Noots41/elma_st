@@ -14,7 +14,7 @@ namespace UnitTestProject1
         public void SumTest()
         {
             var calc = new C.Calc(new C.IOperation[] { new C.SumOperation() });
-            var result = (int)calc.Execute("Sum", 2, new object[] { 1, 2 });
+            var result = (int)calc.Execute("Sum", new object[] { 1, 2 });
             Assert.AreEqual(result, 3);
         }
 
@@ -22,7 +22,7 @@ namespace UnitTestProject1
         public void TripleTest()
         {
             var calc = new C.Calc(new C.IOperation[] { new C.TripleOperation() });
-            var result = (int)calc.Execute("Triple", 3, new object[] { 1, 2, 3 });
+            var result = (int)calc.Execute("Triple",new object[] { 1, 2, 3 });
             Assert.AreEqual(result, 5);
         }
 
@@ -30,7 +30,7 @@ namespace UnitTestProject1
         public void NullTest()
         {
             var calc = new C.Calc(new C.IOperation[] { new C.NullOperation() });
-            var result = (int)calc.Execute("Null", 0, new object[] { });
+            var result = (int)calc.Execute("Null", new object[] { });
             Assert.AreEqual(result, 0);
         }
 
@@ -38,7 +38,7 @@ namespace UnitTestProject1
         public void SingleTest()
         {
             var calc = new C.Calc(new C.IOperation[] { new C.SingleOperation() });
-            var result = (int)calc.Execute("Single", 1, new object[] { 3 });
+            var result = (int)calc.Execute("Single", new object[] { 3 });
             Assert.AreEqual(result, 9);
         }
     }

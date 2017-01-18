@@ -71,10 +71,9 @@ namespace Calculator
         private void button1_Click(object sender, EventArgs e)
         {
             var activeoper = comboBox1.Text;
-            var c = Convert.ToInt32(textBox5.Text);
             var parameters = new object[] { textBox1.Text, textBox2.Text,
                 textBox3.Text, textBox4.Text };
-            var result = Calc.Execute(activeoper, c, parameters);
+            var result = Calc.Execute(activeoper, parameters);
             lblResult.Text = result.ToString();
         }
     }

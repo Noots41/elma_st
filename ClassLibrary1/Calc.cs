@@ -10,7 +10,7 @@ namespace Calc
     {
         public int Sum(int x, int y)
         {
-            return (int)Execute("Sum", 2, new object[] { x, y });
+            return (int)Execute("Sum", new object[] { x, y });
         }
 
         public Calc(IEnumerable<IOperation> opers)
@@ -25,11 +25,11 @@ namespace Calc
 
         private IEnumerable<IOperation> operations { get; set; }
 
-        public object Execute(string name, int c, object[] args)
+        public object Execute(string name, object[] args)
         {
             name = name.ToLower();
-            var oper = operations.FirstOrDefault(o => (o.Name == name & o.C == c )); 
-            return oper.Execute(args);
+            var oper = operations.FirstOrDefault(o => (o.Name == name && o.C == args.Count(x => x != null && (string)x != ""))); 
+            return oper.Execute(args.Where(x => (x != null && (string)x != "")).ToArray());
         }
 
         public IEnumerable<string> GetOperationNames()
@@ -39,8 +39,8 @@ namespace Calc
     }
     public interface IOperation
     {
-        int C { get; }
         string Name { get; }
+        int C { get; }
         object Execute(object[] args);//обработчик
     }
 

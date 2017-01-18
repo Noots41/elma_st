@@ -60,7 +60,7 @@ namespace ConsoleApplication2
 
             var activeoper = args[0];
             var parameters = args.Skip(1).ToArray();
-            var result = calc.Execute(activeoper, 0, parameters);
+            var result = calc.Execute(activeoper, parameters);
             Console.WriteLine($"result = {result}");
             Console.ReadKey();
         }
