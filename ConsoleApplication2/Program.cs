@@ -13,23 +13,6 @@ namespace ConsoleApplication2
     {
         static void Main(string[] args) //calc.exe "sum" "1" "2"
         {
-            #region
-            //try
-            //{
-            //    var calc = new C.Calc(new C.IOperation[] { new C.SumOperation() });
-            //    //int result = calc.Sum(1, 2);
-            //    int result = (int)calc.Execute("Sum", new object[] { 1 });
-            //    Console.WriteLine($"result = {result}");
-            //    //Console.WriteLine(string.Format("result = {0}",result));
-            //    Console.ReadKey();
-            //}
-            //catch (IndexOutOfRangeException e)
-            //{
-            //    Console.WriteLine("Exception caught - {0}", e.Message);
-            //    Console.ReadKey();
-            //} 
-            #endregion
-
             if (!args.Any())
             {
                 Console.WriteLine("calc.exe \"sum\" \"1\" \"2\"");
@@ -76,11 +59,9 @@ namespace ConsoleApplication2
             var calc = new C.Calc(operations);
 
             var activeoper = args[0];
-            var parameters = args.Skip(1).ToArray();//Select(a => (object)a).ToArray();
-
-            var result = calc.Execute(activeoper, parameters);
+            var parameters = args.Skip(1).ToArray();
+            var result = calc.Execute(activeoper, 0, parameters);
             Console.WriteLine($"result = {result}");
-
             Console.ReadKey();
         }
     }

@@ -9,7 +9,8 @@ namespace ConsoleApplication2
 {
     public class PiOperation:IOperation
     {
-        public string Name { get { return "Pi"; } }
+        public string Name { get { return "pi"; } }
+        public int C { get { return 0; } }
         public object Execute(object[] args)
         {
             return (int)Math.PI;
