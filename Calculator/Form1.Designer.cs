@@ -76,7 +76,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(37, 20);
             this.textBox4.TabIndex = 3;
-            this.textBox4.Text = "4";
             // 
             // textBox3
             // 
@@ -84,7 +83,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(37, 20);
             this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "3";
             // 
             // textBox2
             // 
@@ -92,7 +90,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(37, 20);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "2";
             // 
             // textBox1
             // 
@@ -100,7 +97,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(37, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "1";
             // 
             // button1
             // 
