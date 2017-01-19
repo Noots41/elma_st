@@ -14,14 +14,15 @@ namespace Web.Models
         public string Name { get; set; }
 
         [DisplayName("Arg 1")]
-        public int X { get; set; }
+        public int? X { get; set; }
 
         [DisplayName("Arg 2")]
-        public int Y { get; set; }
+        public int? Y { get; set; }
 
         public object[] GetParameters()
         {
-            return new object[] { X, Y};
+            var parameters = new object[] { X, Y };
+            return parameters.Where(p => p != null).ToArray();
         }
     }
 }

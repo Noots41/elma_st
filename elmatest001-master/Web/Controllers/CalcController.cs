@@ -18,6 +18,11 @@ namespace Web.Controllers
 
         public ActionResult Execute(OperationModel model)
         {
+            
+            if (!ModelState.IsValid)
+            {
+                return View("Index", model);
+            }
             var calc = new Calc.Calc(new IOperation[] { new SumOperation() });
             var result = calc.Execute(model.Name, model.GetParameters());
             ViewData.Model = $"result = {result}";
