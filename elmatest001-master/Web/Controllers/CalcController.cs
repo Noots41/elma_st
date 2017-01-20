@@ -20,33 +20,34 @@ namespace Web.Controllers
             var operations = new List<IOperation>();
 
             #region Получение всех возможных операций
-            // найти файлы dll и exe в текущей директории
-            var files = Directory.GetFiles(HostingEnvironment.MapPath("~/") + "\\App_Data", "*.dll");
+            //// найти файлы dll и exe в текущей директории
+            //var files = Directory.GetFiles(HostingEnvironment.MapPath("~/") + "\\App_Data", "*.dll");
 
-            //загрузить их
-            foreach (var file in files)
-            {
-                // Console.WriteLine(file);
-                var assembly = Assembly.LoadFile(file);
+            ////загрузить их
+            //foreach (var file in files)
+            //{
+            //    // Console.WriteLine(file);
+            //    var assembly = Assembly.LoadFile(file);
 
-                foreach (var type in assembly.GetTypes().Where(t => t.IsClass))
-                {
-                    // найти реализацюию интерфейса IOperation
-                    var interfaces = type.GetInterfaces();
-                    if (interfaces.Contains(typeof(IOperation)))
-                    {
-                        //создаем экземпляр класса и приводим к нужному интерфейсу
-                        var oper = Activator.CreateInstance(type) as IOperation;
-                        if (oper != null)
-                        {
-                            operations.Add(oper);
-                        }
-                    }
-                }
-            }
+            //    foreach (var type in assembly.GetTypes().Where(t => t.IsClass))
+            //    {
+            //        // найти реализацюию интерфейса IOperation
+            //        var interfaces = type.GetInterfaces();
+            //        if (interfaces.Contains(typeof(IOperation)))
+            //        {
+            //            //создаем экземпляр класса и приводим к нужному интерфейсу
+            //            var oper = Activator.CreateInstance(type) as IOperation;
+            //            if (oper != null)
+            //            {
+            //                operations.Add(oper);
+            //            }
+            //        }
+            //    }
+            //}
             #endregion
 
-            Calculator = new Calc.Calc(operations);
+            Calculator = Calc.Calc.getCalc();
+            //Calculator = new Calc.Calc(operations);
         }
         // GET: Calc
         public ActionResult Index()

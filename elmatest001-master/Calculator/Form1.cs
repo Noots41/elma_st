@@ -60,9 +60,9 @@ namespace Calculator
             }
             #endregion
 
-            Calc = new Calc.Calc(operations);
+           // Calc = new Calc.Calc(operations);
 
-            OperationNames = Calc.GetOperationNames();
+           // OperationNames = Calc.GetOperationNames();
 
             // заполнить комбобокс
             FillCombobox();
