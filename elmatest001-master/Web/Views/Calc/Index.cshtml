@@ -1,6 +1,7 @@
 ﻿@model Web.Models.OperationModel
 @{
     ViewBag.Title = "Index";
+    var operations = ViewBag.Operations as IEnumerable<SelectListItem>;
 }
 <h2>Index</h2>
 @using (Html.BeginForm("Execute", "Calc", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -9,7 +10,8 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Name, new SelectList(new string[] { "sum" }))
+            @*@Html.TextBoxFor(m => m.Name, new { @class = "form-control" })*@
+            @Html.DropDownListFor(m => m.Name, operations, "")
         </div>
     </div>
 
