@@ -1,58 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Calc;
 using Web.Models;
-using System.Reflection;
-using System.IO;
-using System.Web.Hosting;
+using Web.Services;
+using System.Diagnostics;
 
 namespace Web.Controllers
 {
     public class CalcController : Controller
     {
-        private Calc.Calc Calculator { get; set; }
+        private IOperationResultRepository repository { get; set; }
 
         public CalcController()
         {
-            var operations = new List<IOperation>();
-
-            #region Получение всех возможных операций
-            //// найти файлы dll и exe в текущей директории
-            //var files = Directory.GetFiles(HostingEnvironment.MapPath("~/") + "\\App_Data", "*.dll");
-
-            ////загрузить их
-            //foreach (var file in files)
-            //{
-            //    // Console.WriteLine(file);
-            //    var assembly = Assembly.LoadFile(file);
-
-            //    foreach (var type in assembly.GetTypes().Where(t => t.IsClass))
-            //    {
-            //        // найти реализацюию интерфейса IOperation
-            //        var interfaces = type.GetInterfaces();
-            //        if (interfaces.Contains(typeof(IOperation)))
-            //        {
-            //            //создаем экземпляр класса и приводим к нужному интерфейсу
-            //            var oper = Activator.CreateInstance(type) as IOperation;
-            //            if (oper != null)
-            //            {
-            //                operations.Add(oper);
-            //            }
-            //        }
-            //    }
-            //}
-            #endregion
-
-            Calculator = Calc.Calc.getCalc();
-            //Calculator = new Calc.Calc(operations);
+            repository = new OperationResultRepository();
         }
+
         // GET: Calc
         public ActionResult Index()
         {
-            var opers = Calculator.GetOperationNames().Select(o => new SelectListItem() { Text = o, Value = o });
+            var opers = CalcService.GetInstance().Calculator.GetOperationNames().Select(o => new SelectListItem() { Text = o, Value = o });
             ViewBag.Operations = opers;
             return View(new OperationModel());
         }
@@ -64,11 +31,29 @@ namespace Web.Controllers
                 return View("Index", model);
             }
 
-            var result = Calculator.Execute(model.Name, model.GetParameters());
+            Stopwatch stopWatch = new Stopwatch();
+            stopWatch.Start();
+
+            var result = CalcService.GetInstance().Calculator.Execute(model.Name, model.GetParameters());
+
+            stopWatch.Stop();
+
+            var operResult = repository.Create();
+
+            operResult.ArgumentCount = model.GetParameters().Count();
+            operResult.Arguments = string.Join(",", model.GetParameters());
+            
+
+            operResult.Operation = repository.FindOperByName(model.Name);
+
+            operResult.Result = result.ToString();
+            operResult.ExetTimeMs = stopWatch.ElapsedMilliseconds;
+
+            repository.Update(operResult);
+
             ViewData.Model = $"result = {result}";
             return View();
         }
-
-
     }
 }
+
