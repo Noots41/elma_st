@@ -17,6 +17,7 @@ namespace DomainModel.Helpers
                     var configuration = new Configuration();
                     configuration.Configure();
                     configuration.AddAssembly(typeof(Operations).Assembly);
+                   // configuration.AddAssembly(typeof(User).Assembly);
                     _sessionFactory = configuration.BuildSessionFactory();
                 }
                 return _sessionFactory;

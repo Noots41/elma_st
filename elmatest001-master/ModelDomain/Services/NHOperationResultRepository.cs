@@ -9,7 +9,8 @@ using System.Web;
 
 namespace Services
 {
-    public class NHOperationResultRepository : IOperationResultRepository
+    public class NHOperationResultRepository : 
+        IOperationResultRepository
     {
         private CalcContext db { get; set; }
 
@@ -34,13 +35,25 @@ namespace Services
 
         public Operations FindOperByName(string name)
         {
-            
+
             using (var session = NHibernateHelper.OpenSession())
             {
                 var criteria = session.CreateCriteria(typeof(Operations));
                 criteria.Add(Restrictions.Eq("Name", name));
                 criteria.SetMaxResults(1);
                 return criteria.List<Operations>().FirstOrDefault();
+            }
+        }
+
+        public Users GetDefault()
+        {
+
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                var criteria = session.CreateCriteria(typeof(Users));
+                criteria.Add(Restrictions.Eq("Id", 1));
+                criteria.SetMaxResults(1);
+                return criteria.List<Users>().FirstOrDefault();
             }
         }
 
@@ -72,7 +85,7 @@ namespace Services
                     {
                         session.Save(operResult);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         //вывод е в лог
                         transaction.Rollback();

@@ -61,10 +61,12 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Helpers\NHibernateHelper.cs" />
     <Compile Include="Model\OperationResult.cs" />
+    <Compile Include="Model\Users.cs" />
     <Compile Include="Model\Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CalcContext.cs" />
     <Compile Include="Services\IEntityRepository.cs" />
+    <Compile Include="Services\IUserRepository.cs" />
     <Compile Include="Services\IOperationRepository.cs" />
     <Compile Include="Services\IOperationResultRepository.cs" />
     <Compile Include="Services\OperationRepository.cs" />
@@ -79,6 +81,7 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Mapping\Users.hbm.xml" />
     <EmbeddedResource Include="Mapping\Operation.hbm.xml" />
     <EmbeddedResource Include="Mapping\OperationResult.hbm.xml" />
   </ItemGroup>

@@ -43,10 +43,10 @@ namespace Web.Controllers
             operResult.ArgumentCount = model.GetParameters().Count();
             operResult.Arguments = string.Join(",", model.GetParameters());
 
-
+           
             //operResult.OperationId = repository.FindOperByName(model.Name).Id;
             operResult.Operation = repository.FindOperByName(model.Name);
-
+            operResult.Users = repository.GetDefault();
             operResult.Result = result.ToString();
             operResult.ExetTimeMs = stopWatch.ElapsedMilliseconds;
 

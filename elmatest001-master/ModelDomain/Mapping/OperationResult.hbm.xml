@@ -12,7 +12,7 @@
     <property name="Result" />
     <property name="ExetTimeMs" />
 
-    
+    <many-to-one name="Users" class="Users" column="UserId" lazy ="false" cascade = "save-update"/>   
     <many-to-one name="Operation" class="Operations" column="OperationId" lazy ="false" cascade = "save-update"/>
   </class>
 </hibernate-mapping>

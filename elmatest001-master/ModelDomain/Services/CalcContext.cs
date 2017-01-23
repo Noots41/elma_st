@@ -15,5 +15,7 @@ namespace Services
         public DbSet<OperationResult> OperationResult { get; set; }
 
         public DbSet<Operations> Operations { get; set; }
+
+        public DbSet<Users> Users { get; set; }
     }
 }

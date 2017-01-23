@@ -26,7 +26,11 @@
         <th>
             @Html.DisplayNameFor(model => model.ExetTimeMs)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -45,6 +49,10 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ExetTimeMs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.FirstName)
+            @Html.DisplayFor(modelItem => item.Users.LastName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

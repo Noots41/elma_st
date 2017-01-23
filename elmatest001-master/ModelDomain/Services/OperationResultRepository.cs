@@ -63,6 +63,11 @@ namespace Services
             return operations;
         }
 
+        public Users GetDefault()
+        {
+            throw new NotImplementedException();
+        }
+
         public OperationResult Load(int Id)
         {
             using (var db = new CalcContext())
