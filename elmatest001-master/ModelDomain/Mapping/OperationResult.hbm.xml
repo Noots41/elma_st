@@ -11,7 +11,8 @@
     <property name="Arguments" />
     <property name="Result" />
     <property name="ExetTimeMs" />
-    <property name="OperationId" />
+
     
+    <many-to-one name="Operation" class="Operations" column="OperationId" lazy ="false" cascade = "save-update"/>
   </class>
 </hibernate-mapping>

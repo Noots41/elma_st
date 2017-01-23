@@ -13,7 +13,7 @@ namespace Web.Controllers
 
         public CalcController()
         {
-            repository = new OperationResultRepository();
+            repository = new NHOperationResultRepository();
         }
 
         // GET: Calc
@@ -44,7 +44,7 @@ namespace Web.Controllers
             operResult.Arguments = string.Join(",", model.GetParameters());
 
 
-            operResult.OperationId = repository.FindOperByName(model.Name).Id;
+            //operResult.OperationId = repository.FindOperByName(model.Name).Id;
             operResult.Operation = repository.FindOperByName(model.Name);
 
             operResult.Result = result.ToString();

@@ -20,7 +20,7 @@ namespace Web.Controllers
         public ActionResult Index()
         {
             // нужно фильтровать операции - выводить только те, которые выполнялись дольше 1 секунды
-            var operations = repository.GetAll().Where(o => o.ExetTimeMs > 1000);
+            var operations = repository.GetAll().OrderByDescending(it => it.Id).Take(5);//Where(o => o.ExetTimeMs > 1000);
             return View(operations);
         }
     }

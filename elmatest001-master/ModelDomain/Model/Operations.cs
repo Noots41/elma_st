@@ -7,14 +7,15 @@ using System.Web;
 
 namespace Models
 {
-    [Table("Operation")]
+   
     public class Operations
     {
-        [Key]
-        public int Id { get; set; }
+        
+        public virtual int Id { get; set; }
+        
+        public virtual string Name { get; set; }
 
-        [MaxLength(50)]
-        public string Name { get; set; }
+
         
     }
 }

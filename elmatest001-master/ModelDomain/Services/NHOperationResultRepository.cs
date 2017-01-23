@@ -15,11 +15,7 @@ namespace Services
 
         public OperationResult Create()
         {
-            using (var db = new CalcContext())
-            {
-                return db.OperationResult.Create();
-            }
-
+            return new OperationResult() { Id = 0 };
         }
 
         public bool Delete(int Id)
@@ -38,12 +34,14 @@ namespace Services
 
         public Operations FindOperByName(string name)
         {
-            var operation = new Operations();
-            using (var db = new CalcContext())
+            
+            using (var session = NHibernateHelper.OpenSession())
             {
-                operation = db.Operations.AsNoTracking().FirstOrDefault(o => o.Name == name);
+                var criteria = session.CreateCriteria(typeof(Operations));
+                criteria.Add(Restrictions.Eq("Name", name));
+                criteria.SetMaxResults(1);
+                return criteria.List<Operations>().FirstOrDefault();
             }
-            return operation;
         }
 
         public IEnumerable<OperationResult> GetAll()
@@ -66,10 +64,23 @@ namespace Services
 
         public void Update(OperationResult operResult)
         {
-            using (var db = new CalcContext())
+            using (var session = NHibernateHelper.OpenSession())
             {
-                db.Entry<OperationResult>(operResult).State = operResult.Id == 0 ? EntityState.Added : EntityState.Modified;
-                db.SaveChanges();
+                using (var transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Save(operResult);
+                    }
+                    catch(Exception e)
+                    {
+                        //вывод е в лог
+                        transaction.Rollback();
+                        throw;
+                    }
+                    transaction.Commit();
+                }
+
             }
         }
     }
