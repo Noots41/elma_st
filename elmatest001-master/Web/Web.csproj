@@ -187,15 +187,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OperationModel.cs" />
-    <Compile Include="Models\OperationResult.cs" />
-    <Compile Include="Models\Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CalcContext.cs" />
-    <Compile Include="Services\IEntityRepository.cs" />
-    <Compile Include="Services\IOperationRepository.cs" />
-    <Compile Include="Services\IOperationResultRepository.cs" />
-    <Compile Include="Services\OperationRepository.cs" />
-    <Compile Include="Services\OperationResultRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +266,10 @@
     <ProjectReference Include="..\Calc\Calc.csproj">
       <Project>{9d13c338-dead-467c-a1b2-9e256611521a}</Project>
       <Name>Calc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ModelDomain\ModelDomain.csproj">
+      <Project>{c5d5dc31-73b8-4cb7-ba1f-d51b765ce3e6}</Project>
+      <Name>ModelDomain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

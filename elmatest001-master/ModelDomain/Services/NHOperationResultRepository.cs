@@ -1,13 +1,15 @@
-﻿using System;
+﻿using DomainModel.Helpers;
+using Models;
+using NHibernate.Criterion;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
-using Web.Models;
 
-namespace Web.Services
+namespace Services
 {
-    public class OperationResultRepository : IOperationResultRepository
+    public class NHOperationResultRepository : IOperationResultRepository
     {
         private CalcContext db { get; set; }
 
@@ -17,7 +19,7 @@ namespace Web.Services
             {
                 return db.OperationResult.Create();
             }
-                
+
         }
 
         public bool Delete(int Id)
@@ -47,18 +49,11 @@ namespace Web.Services
         public IEnumerable<OperationResult> GetAll()
         {
             var operations = new List<OperationResult>();
-            using (var db = new CalcContext())
+            using (var session = NHibernateHelper.OpenSession())
             {
-                operations = db.OperationResult.Include("Operation").AsNoTracking().ToList();
-
-                //все данные вытаскиваем, на клиенте фильтруем
-                //IEnumerable<OperationResult> ops = db.OperationResult;
-                //var result = ops.Where(o => o.Id > 3);
-
-                //все данные фильтрует бд
-                //IQueryable<OperationResult> qops = db.OperationResult;
-                //var qresult = qops.Where(o => o.Id > 3);
-
+                var criteria = session.CreateCriteria(typeof(OperationResult));
+                //criteria.Add(Restrictions.Ge("Id", 3));
+                operations = criteria.List<OperationResult>().ToList();
             }
             return operations;
         }

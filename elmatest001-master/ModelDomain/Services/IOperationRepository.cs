@@ -1,6 +1,6 @@
-﻿using Web.Models;
+﻿using Models;
 
-namespace Web.Services
+namespace Services
 {
     /// <summary>
     /// Хранилище операций на базе общего хранилища

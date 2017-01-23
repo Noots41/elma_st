@@ -2,8 +2,8 @@
 using System.Web.Mvc;
 using Calc;
 using Web.Models;
-using Web.Services;
 using System.Diagnostics;
+using Services;
 
 namespace Web.Controllers
 {
@@ -42,8 +42,9 @@ namespace Web.Controllers
 
             operResult.ArgumentCount = model.GetParameters().Count();
             operResult.Arguments = string.Join(",", model.GetParameters());
-            
 
+
+            operResult.OperationId = repository.FindOperByName(model.Name).Id;
             operResult.Operation = repository.FindOperByName(model.Name);
 
             operResult.Result = result.ToString();
