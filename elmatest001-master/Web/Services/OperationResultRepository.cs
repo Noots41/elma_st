@@ -39,7 +39,7 @@ namespace Web.Services
             var operation = new Operations();
             using (var db = new CalcContext())
             {
-                operation = db.Operations.FirstOrDefault(o => o.Name == name);
+                operation = db.Operations.AsNoTracking().FirstOrDefault(o => o.Name == name);
             }
             return operation;
         }
