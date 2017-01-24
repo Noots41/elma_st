@@ -30,7 +30,7 @@ namespace Models
 
         public virtual Users Users { get; set; }
 
-        public virtual Operations Operation { get; set; }
+        public virtual Operation Operation { get; set; }
 
     }
 }

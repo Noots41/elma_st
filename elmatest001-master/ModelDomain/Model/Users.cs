@@ -21,5 +21,10 @@ namespace Models
 
         public virtual string Password { get; set; }
 
+        public virtual string FullName
+        {
+            get { return $"{LastName} {FirstName}"; }
+        }
+
     }
 }

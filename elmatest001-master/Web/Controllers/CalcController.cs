@@ -4,6 +4,8 @@ using Calc;
 using Web.Models;
 using System.Diagnostics;
 using Services;
+using DomainModel.Helpers;
+using Models;
 
 namespace Web.Controllers
 {
@@ -46,11 +48,17 @@ namespace Web.Controllers
            
             //operResult.OperationId = repository.FindOperByName(model.Name).Id;
             operResult.Operation = repository.FindOperByName(model.Name);
-            operResult.Users = repository.GetDefault();
+            //operResult.Users = repository.GetDefault();
             operResult.Result = result.ToString();
             operResult.ExetTimeMs = stopWatch.ElapsedMilliseconds;
 
-            repository.Update(operResult);
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                operResult.Users = session.Get<Users>(1);
+            }
+
+
+                repository.Update(operResult);
 
             ViewData.Model = $"result = {result}";
             return View();

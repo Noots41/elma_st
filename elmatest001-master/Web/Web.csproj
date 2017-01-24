@@ -253,6 +253,7 @@
     <Content Include="Views\Calc\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ArgView.cshtml" />
     <Content Include="Views\OperationResult\Index.cshtml" />
+    <Content Include="Views\OperationResult\Item.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

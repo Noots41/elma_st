@@ -34,9 +34,9 @@ namespace Services
             }
         }
 
-        public Operations FindOperByName(string name)
+        public Operation FindOperByName(string name)
         {
-            var operation = new Operations();
+            var operation = new Operation();
             using (var db = new CalcContext())
             {
                 operation = db.Operations.AsNoTracking().FirstOrDefault(o => o.Name == name);

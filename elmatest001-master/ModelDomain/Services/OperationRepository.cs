@@ -12,7 +12,7 @@ namespace Services
     {
         private CalcContext db { get; set; }
 
-        public Operations Create()
+        public Operation Create()
         {
             using (var db = new CalcContext())
             {
@@ -35,23 +35,23 @@ namespace Services
             }
         }
 
-        public IEnumerable<Operations> GetAll()
+        public IEnumerable<Operation> GetAll()
         {
             using (var db = new CalcContext())
                 return db.Operations.ToList();
         }
 
-        public Operations Load(int Id)
+        public Operation Load(int Id)
         {
             using (var db = new CalcContext())
                 return db.Operations.FirstOrDefault(o => o.Id == Id);
         }
 
-        public void Update(Operations operResult)
+        public void Update(Operation operResult)
         {
             using (var db = new CalcContext())
             {
-                db.Entry<Operations>(operResult).State = EntityState.Modified;
+                db.Entry<Operation>(operResult).State = EntityState.Modified;
                 db.SaveChanges();
             }
         }

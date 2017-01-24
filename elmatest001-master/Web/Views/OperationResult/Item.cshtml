@@ -1,0 +1,27 @@
+﻿@model Models.OperationResult
+@{ 
+    ViewBag.Title = "Item";
+}
+
+<tr>
+    <td>
+        @Html.DisplayFor(m => m.Operation.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.ArgumentCount)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.Arguments)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.Result)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.ExetTimeMs)
+    </td>
+    <td>
+        @Html.DisplayFor(m => m.Users.FullName)
+    </td>
+    
+</tr>
+

@@ -9,7 +9,7 @@ namespace Services
 {
     public interface IOperationResultRepository : IEntityRepository<OperationResult>
     {
-        Operations FindOperByName(string name);
+        Operation FindOperByName(string name);
         Users GetDefault();
     }
 }

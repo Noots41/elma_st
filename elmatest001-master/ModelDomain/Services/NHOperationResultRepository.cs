@@ -33,15 +33,15 @@ namespace Services
             }
         }
 
-        public Operations FindOperByName(string name)
+        public Operation FindOperByName(string name)
         {
 
             using (var session = NHibernateHelper.OpenSession())
             {
-                var criteria = session.CreateCriteria(typeof(Operations));
+                var criteria = session.CreateCriteria(typeof(Operation));
                 criteria.Add(Restrictions.Eq("Name", name));
                 criteria.SetMaxResults(1);
-                return criteria.List<Operations>().FirstOrDefault();
+                return criteria.List<Operation>().FirstOrDefault();
             }
         }
 

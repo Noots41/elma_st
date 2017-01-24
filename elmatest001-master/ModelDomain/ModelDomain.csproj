@@ -39,6 +39,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
@@ -60,9 +64,12 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Helpers\NHibernateHelper.cs" />
+    <Compile Include="Mapping\UsersMap.cs" />
+    <Compile Include="Mapping\OperationMap.cs" />
+    <Compile Include="Mapping\OperationResultMap.cs" />
     <Compile Include="Model\OperationResult.cs" />
     <Compile Include="Model\Users.cs" />
-    <Compile Include="Model\Operations.cs" />
+    <Compile Include="Model\Operation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CalcContext.cs" />
     <Compile Include="Services\IEntityRepository.cs" />
@@ -76,14 +83,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="hibernate.cfg.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Mapping\Users.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Operation.hbm.xml" />
-    <EmbeddedResource Include="Mapping\OperationResult.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

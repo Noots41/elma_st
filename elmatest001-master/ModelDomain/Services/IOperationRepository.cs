@@ -5,7 +5,7 @@ namespace Services
     /// <summary>
     /// Хранилище операций на базе общего хранилища
     /// </summary>
-    public interface IOperationRepository : IEntityRepository<Operations>
+    public interface IOperationRepository : IEntityRepository<Operation>
     {
     }
 }

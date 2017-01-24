@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Web.Models;
+using DomainModel.Helpers;
+using Models;
 
 namespace Web.Controllers
 {
@@ -73,24 +75,25 @@ namespace Web.Controllers
                 return View(model);
             }
 
-            // Сбои при входе не приводят к блокированию учетной записи
-            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+
+            var result = CheckUser(model.Login,model.Password);
+            if (result)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
-                    return View(model);
+                return RedirectToLocal(returnUrl);
+
             }
+            ModelState.AddModelError("", "Неудачная попытка входа.");
+            return View(model);
         }
 
+        private bool CheckUser(string login, string password)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                var count = session.QueryOver<Users>().And(x => x.Login == login && x.Password == password).RowCount();
+                return count == 1;
+            }
+        }
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
